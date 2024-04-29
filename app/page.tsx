@@ -56,7 +56,7 @@ export default function Home() {
 
     // intervalId = setInterval(() => { // Affecter intervalId
     //   moveCell();
-    // }, 1000); // Déplacement toutes les secondes
+    // }, 10000); // Déplacement toutes les secondes
   };
 
   const handleGridContainerNotInView = () => {
@@ -75,9 +75,9 @@ export default function Home() {
   };
 
   const moveCell = () => {
-    const adjacentCells = findAdjacentCells(emptyCellPos.row, emptyCellPos.col);
-    console.log("adjacentCells -->", adjacentCells)
     // Choix aléatoire d'une cellule adjacente à déplacer
+    const adjacentCells = findAdjacentCells(emptyCellPos.row, emptyCellPos.col);
+    // console.log("adjacentCells -->", adjacentCells)
     const randomIndex = Math.floor(Math.random() * adjacentCells.length);
     const selectedCell = adjacentCells[randomIndex];
     console.log("selectedCell -->", selectedCell)
@@ -90,21 +90,24 @@ export default function Home() {
       key => gridReferences[key][0] === emptyCellPos.row && gridReferences[key][1] === emptyCellPos.col
     );
 
+
     console.log("keyToMove -->", keyToMove)
+    console.log("newKey -->", newKey)
 
     const cellElement = document.querySelector(`.grid-item-${keyToMove}`);
-    console.log("cellElement -->", cellElement)
 
     // Vérifier si l'élément HTML a été trouvé
     if (cellElement) {
+      console.log("cellElement -->", cellElement)
       // Modifier le style de la cellule
       cellElement.style.gridRowStart = emptyCellPos.row;
       cellElement.style.gridColumnStart = emptyCellPos.col;
       cellElement.classList.remove(`grid-item-${keyToMove}`);
       cellElement.classList.add(`grid-item-${newKey}`);
+      setEmptyCellPos(selectedCell);
     }
 
-    setEmptyCellPos(selectedCell);
+
 
   };
 
@@ -140,6 +143,15 @@ export default function Home() {
           )
         ))}
       </div>
+
+      <p>lbjld</p>
+      <p>lbjld</p>
+      <p>lbjld</p>
+      <p>lbjld</p>
+      <p>lbjld</p>
+      <p>lbjld</p>
+      <p>lbjld</p>
+      <p>lbjld</p>
     </main>
   );
 }
