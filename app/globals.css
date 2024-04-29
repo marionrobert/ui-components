@@ -12,11 +12,11 @@
 }
 
 .cell {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
   padding: 20px;
   text-align: center;
   border-radius: 5px;
+  color: white;
+  font-size: 2rem;
 }
 
 p {
