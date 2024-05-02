@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import logo from "../public/next.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useInView } from 'react-intersection-observer';
 
 const colors: string[] = [
@@ -33,36 +33,17 @@ const positions = [];
 for (let row = 1; row <= 3; row++) {
   for (let col = 1; col <= 3; col++) {
     const index = (row - 1) * 3 + col - 1;
+    if (index < 8){
       positions.push({ row, col, index });
+    }
   }
 }
 
-let intervalId: NodeJS.Timeout;
 
 
 export default function Home() {
   const { ref, inView } = useInView();
   const [emptyCellPos, setEmptyCellPos] = useState<{ row: number; col: number }>({ row: 3, col: 3 });
-  // const [cellToMove, setCellToMove] = useState<{ row: number; col: number }>({ row: 0, col: 0 });
-
-  // const findCells = () => {
-  //   let cells = document.querySelectorAll(".cell");
-  //   console.log(cells)
-  // }
-
-  const handleGridContainerInView = () => {
-    console.log('Le grid-container est dans la vue.');
-    moveCell();
-
-    // intervalId = setInterval(() => { // Affecter intervalId
-    //   moveCell();
-    // }, 10000); // Déplacement toutes les secondes
-  };
-
-  const handleGridContainerNotInView = () => {
-    console.log('Le grid-container n\'est plus dans la vue.');
-    // clearInterval(intervalId); // Arrêter les déplacements
-  };
 
   const findAdjacentCells = (row: number, col: number) => {
     // Détermine les cellules adjacentes à la cellule vide
@@ -74,7 +55,7 @@ export default function Home() {
     return adjacent;
   };
 
-  const moveCell = () => {
+  const moveCell = useCallback(() => {
     // Choix aléatoire d'une cellule adjacente à déplacer
     const adjacentCells = findAdjacentCells(emptyCellPos.row, emptyCellPos.col);
     // console.log("adjacentCells -->", adjacentCells)
@@ -95,10 +76,10 @@ export default function Home() {
     console.log("newKey -->", newKey)
 
     const cellElement = document.querySelector(`.grid-item-${keyToMove}`);
+    console.log("cellElement -->", cellElement)
 
     // Vérifier si l'élément HTML a été trouvé
     if (cellElement) {
-      console.log("cellElement -->", cellElement)
       // Modifier le style de la cellule
       cellElement.style.gridRowStart = emptyCellPos.row;
       cellElement.style.gridColumnStart = emptyCellPos.col;
@@ -106,18 +87,31 @@ export default function Home() {
       cellElement.classList.add(`grid-item-${newKey}`);
       setEmptyCellPos(selectedCell);
     }
-
-
-
-  };
+  }, [emptyCellPos, findAdjacentCells]);
 
   useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    const handleGridContainerInView = () => {
+      console.log('Le grid-container est dans la vue.');
+      intervalId = setInterval(moveCell, 2000); // Démarrer l'intervalle
+    };
+
+    const handleGridContainerNotInView = () => {
+      console.log('Le grid-container n\'est plus dans la vue.');
+      clearInterval(intervalId); // Arrêter l'intervalle
+    };
+
     if (inView) {
       handleGridContainerInView();
     } else {
       handleGridContainerNotInView();
     }
-  }, [inView]);
+
+    return () => {
+      clearInterval(intervalId); // Nettoyer l'intervalle avant le démontage
+    };
+  }, [inView, moveCell]);
 
   return (
     <main>
@@ -132,15 +126,9 @@ export default function Home() {
 
       <div ref={ref} className="grid-container">
         {positions.map((pos, index) => (
-          index !== 8 ? (
             <div key={index} className={`cell grid-item-${index+1}`} style={{ gridRowStart: pos.row, gridColumnStart: pos.col, backgroundColor: colors[index] }}>
               {pos.index + 1}
             </div>
-          ) : (
-            <div key={index} className="cell" style={{ gridRowStart: pos.row, gridColumnStart: pos.col, backgroundColor: colors[index] }}>
-              {null}
-            </div>
-          )
         ))}
       </div>
 
