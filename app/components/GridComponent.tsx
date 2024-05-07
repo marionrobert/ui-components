@@ -65,13 +65,21 @@ const findAdjacentCells = (row: number, col: number) => {
 export default function Home() {
   const { ref, inView } = useInView();
   const [emptyCellPos, setEmptyCellPos] = useState<{ row: number; col: number }>({ row: 3, col: 3 });
+  const [lastMovedCell, setLastMovedCell] = useState<{ row: number; col: number }>({ row: 3, col: 3 });
 
   // Function to move a cell randomly
   const moveCell = useCallback(() => {
     // Choose a random adjacent cell to move
     const adjacentCells = findAdjacentCells(emptyCellPos.row, emptyCellPos.col);
-    const randomIndex = Math.floor(Math.random() * adjacentCells.length);
-    const selectedCell = adjacentCells[randomIndex];
+    const cleanedAdjacentCells = adjacentCells.filter(cell => {
+      // Exclude cell with same row AND same column as lastMovedCell
+      return !(cell.row === lastMovedCell.row && cell.col === lastMovedCell.col);
+    });
+    const randomIndex = Math.floor(Math.random() * cleanedAdjacentCells.length);
+    const selectedCell = cleanedAdjacentCells[randomIndex];
+    console.log("emptyCellPos -->", emptyCellPos);
+    console.log("lastMovedCell -->", lastMovedCell);
+
 
     // Find the keys corresponding to the cells to move
     const keyToMove = Object.keys(gridReferences).find(
@@ -91,13 +99,15 @@ export default function Home() {
 
     // Move the cell if HTML element is found
     if (cellElement) {
+      //update lastMovedCell
+      setLastMovedCell({ row: emptyCellPos.row, col: emptyCellPos.col });
       cellElement.style.gridRowStart = emptyCellPos.row;
       cellElement.style.gridColumnStart = emptyCellPos.col;
       cellElement.classList.remove(`grid-item-${keyToMove}`);
       cellElement.classList.add(`grid-item-${newKey}`);
       setEmptyCellPos(selectedCell);
     }
-  }, [emptyCellPos]);
+  }, [emptyCellPos, lastMovedCell]);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
