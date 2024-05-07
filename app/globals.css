@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+main {
+  margin: 2rem 0;
+}
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 2rem 0;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3,minmax(0,1fr)); /* Crée 3 colonnes de largeur égale */
