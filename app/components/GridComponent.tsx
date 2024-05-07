@@ -69,17 +69,14 @@ export default function Home() {
 
   // Function to move a cell randomly
   const moveCell = useCallback(() => {
-    // Choose a random adjacent cell to move
+    // Choose a random adjacent cell to the empty cell
     const adjacentCells = findAdjacentCells(emptyCellPos.row, emptyCellPos.col);
     const cleanedAdjacentCells = adjacentCells.filter(cell => {
-      // Exclude cell with same row AND same column as lastMovedCell
+      // Exclude the cell with the same row AND column as the last moved cell
       return !(cell.row === lastMovedCell.row && cell.col === lastMovedCell.col);
     });
     const randomIndex = Math.floor(Math.random() * cleanedAdjacentCells.length);
     const selectedCell = cleanedAdjacentCells[randomIndex];
-    console.log("emptyCellPos -->", emptyCellPos);
-    console.log("lastMovedCell -->", lastMovedCell);
-
 
     // Find the keys corresponding to the cells to move
     const keyToMove = Object.keys(gridReferences).find(
@@ -97,23 +94,53 @@ export default function Home() {
     // Find the HTML element corresponding to the cell
     const cellElement = document.querySelector(`.grid-item-${keyToMove}`);
 
-    // Move the cell if HTML element is found
+    // Move the cell if the HTML element is found
     if (cellElement) {
-      //update lastMovedCell
+      // Dynamically fetch cell dimensions from the DOM
+      const computedStyle = window.getComputedStyle(cellElement);
+      const cell_height = parseFloat(computedStyle.getPropertyValue('height'));
+      const cell_width = parseFloat(computedStyle.getPropertyValue('width'));
+
+      // Update the last moved cell
       setLastMovedCell({ row: emptyCellPos.row, col: emptyCellPos.col });
-      cellElement.style.gridRowStart = emptyCellPos.row;
-      cellElement.style.gridColumnStart = emptyCellPos.col;
-      cellElement.classList.remove(`grid-item-${keyToMove}`);
-      cellElement.classList.add(`grid-item-${newKey}`);
-      setEmptyCellPos(selectedCell);
+
+      // Calculate the position differences between the cells
+      const rowDiff = emptyCellPos.row - selectedCell.row;
+      const colDiff = emptyCellPos.col - selectedCell.col;
+
+      // Convert position differences to pixels using actual cell dimensions
+      const rowOffset = rowDiff * cell_height;
+      const colOffset = colDiff * cell_width;
+
+      // Apply transformation to the cell with JavaScript animation
+      cellElement.animate(
+        [
+          { transform: 'translate3d(0, 0, 0)' }, // Start of animation: no movement
+          { transform: `translate3d(${colOffset}px, ${rowOffset}px, 0)` } // End of animation: move to target position
+        ],
+        {
+          duration: 1000, // Duration of animation in milliseconds (3 seconds)
+          easing: 'linear' // Type of animation
+        }
+      ).onfinish = () => {
+        // Update the position of the cell in the CSS grid
+        cellElement.style.gridRowStart = emptyCellPos.row;
+        cellElement.style.gridColumnStart = emptyCellPos.col;
+        cellElement.classList.remove(`grid-item-${keyToMove}`);
+        cellElement.classList.add(`grid-item-${newKey}`);
+
+        // Update the position of the empty cell
+        setEmptyCellPos(selectedCell);
+      };
     }
   }, [emptyCellPos, lastMovedCell]);
+
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
 
     const handleGridContainerInView = () => {
-      intervalId = setInterval(moveCell, 2000); // Start the interval
+      intervalId = setInterval(moveCell, 3000); // Start the interval
     };
 
     const handleGridContainerNotInView = () => {
