@@ -1,6 +1,4 @@
 "use client";
-import Image from "next/image";
-import logo from "../public/next.svg";
 import { useEffect, useState, useCallback } from "react";
 import { useInView } from 'react-intersection-observer';
 
@@ -15,7 +13,6 @@ const colors: string[] = [
   '#B22222', // Fire brick
   '#8B0000', // Dark red
 ];
-
 
 // Object mapping grid item keys to their positions
 const gridReferences: { [key: string]: number[] } = {
@@ -61,7 +58,12 @@ const findAdjacentCells = (row: number, col: number) => {
   return adjacent;
 };
 
-const calculateOffsets = (emptyCellPos, selectedCell, cellElement) => {
+interface CellPosition {
+  row: number;
+  col: number;
+}
+
+const calculateOffsets = (emptyCellPos: CellPosition, selectedCell: CellPosition, cellElement: HTMLElement) => {
   // Get the computed style of the cell element to determine its dimensions
   const computedStyle = window.getComputedStyle(cellElement);
   const cell_height = parseFloat(computedStyle.getPropertyValue('height'));
@@ -107,40 +109,43 @@ export default function Home() {
     );
 
     // Find the HTML element corresponding to the cell
-    const cellElement = document.querySelector(`.grid-item-${keyToMove}`);
+    const cellElement = document.querySelector(`.grid-item-${keyToMove}`) as HTMLElement | null;
     if (!cellElement) return;
 
-    // Calculate the position differences between the cells
-    const { rowOffset, colOffset } = calculateOffsets(emptyCellPos, selectedCell, cellElement);
+    // Check if cellElement is an instance of HTMLElement
+    if (cellElement instanceof HTMLElement) {
+      // Calculate the position differences between the cells
+      const { rowOffset, colOffset } = calculateOffsets(emptyCellPos, selectedCell, cellElement);
 
-    // Apply animation to move the cell
-    cellElement.animate(
-      [
-        { transform: 'translate3d(0, 0, 0)' }, // Start of animation: no movement
-        { transform: `translate3d(${colOffset}px, ${rowOffset}px, 0)` } // End of animation: move to target position
-      ],
-      {
-        duration: 1000, // Duration of animation in milliseconds
-        easing: 'linear' // Linear animation
-      }
-    ).onfinish = () => {
-      // Update the position of the cell in the CSS grid
-      cellElement.style.gridRowStart = emptyCellPos.row;
-      cellElement.style.gridColumnStart = emptyCellPos.col;
-      cellElement.classList.remove(`grid-item-${keyToMove}`);
-      cellElement.classList.add(`grid-item-${newKey}`);
+      // Apply animation to move the cell
+      cellElement.animate(
+        [
+          { transform: 'translate3d(0, 0, 0)' }, // Start of animation: no movement
+          { transform: `translate3d(${colOffset}px, ${rowOffset}px, 0)` } // End of animation: move to target position
+        ],
+        {
+          duration: 1000,
+          easing: 'linear' // Linear animation
+        }
+      ).onfinish = () => {
+        // Update the position of the cell in the CSS grid
+        cellElement.style.gridRowStart = emptyCellPos.row.toString();
+        cellElement.style.gridColumnStart = emptyCellPos.col.toString();
+        cellElement.classList.remove(`grid-item-${keyToMove}`);
+        cellElement.classList.add(`grid-item-${newKey}`);
 
-      // Update lastMovedCell
-      setLastMovedCell({ row: emptyCellPos.row, col: emptyCellPos.col });
+        // Update lastMovedCell
+        setLastMovedCell({ row: emptyCellPos.row, col: emptyCellPos.col });
 
-      // Update the position of the empty cell
-      setEmptyCellPos(selectedCell);
+        // Update the position of the empty cell
+        setEmptyCellPos(selectedCell);
+      };
+    } else {
+      // Handle the case where cellElement is not an instance of HTMLElement
+      throw new Error('cellElement must be an HTMLElement');
+    }
 
-    };
   }, [emptyCellPos, lastMovedCell]);
-
-
-
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
