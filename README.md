@@ -54,7 +54,13 @@ La structure du projet est organisée comme suit :
 - Disposition en Grille CSS : Utilise CSS Grid pour positionner les éléments de la grille.
 - Effets d'Animation : Animations fluides appliquées aux mouvements de cellules.
 
-Vous pouvez visualiser une démo du composant en [cliquant ici](./public/videoGrid.mp4).
+<div style="display: flex; justify-content: center;">
+  <img src="public/screenshotGridComponent1.png" alt="screenshotGridComponent1" />
+  <img src="public/screenshotGridComponent2.png" alt="screenshotGridComponent2" />
+</div>
+
+https://github.com/marionrobert/ui-components/assets/107509668/ed09afe8-68bd-491d-ac2a-57a326f15819
+NB: La vidéo ne rend pas bien l'effet de transition lors du déplacement d'une cellule.
 
 
 ***
@@ -115,5 +121,11 @@ The project structure is organized as follows:
 - CSS Grid Layout: Utilizes CSS Grid for positioning grid items.
 - Animation Effects: Smooth animations applied to cell movements.
 
-You can view a demo of the component by [clicking here](./public/videoGrid.mp4).
+<div style="display: flex; justify-content: center;">
+  <img src="public/screenshotGridComponent1.png" alt="screenshotGridComponent1" />
+  <img src="public/screenshotGridComponent2.png" alt="screenshotGridComponent2" />
+</div>
+
+https://github.com/marionrobert/ui-components/assets/107509668/ed09afe8-68bd-491d-ac2a-57a326f15819
+N.B.: La vidéo ne rend pas bien l'effet de transition lors du déplacement d'une cellule.
 
