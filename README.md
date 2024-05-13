@@ -60,7 +60,8 @@ La structure du projet est organisée comme suit :
 </div>
 
 https://github.com/marionrobert/ui-components/assets/107509668/ed09afe8-68bd-491d-ac2a-57a326f15819
-NB: La vidéo ne rend pas bien l'effet de transition lors du déplacement d'une cellule.
+
+NB: La vidéo ne rend pas bien l'effet de transition lors du déplacement d'une cellule qui est plus lent en réalité.
 
 
 ***
@@ -126,6 +127,8 @@ The project structure is organized as follows:
   <img src="public/screenshotGridComponent2.png" alt="screenshotGridComponent2" />
 </div>
 
-https://github.com/marionrobert/ui-components/assets/107509668/ed09afe8-68bd-491d-ac2a-57a326f15819
-N.B.: La vidéo ne rend pas bien l'effet de transition lors du déplacement d'une cellule.
+
+https://github.com/marionrobert/ui-components/assets/107509668/fe944c8d-bf59-4133-9690-8782f40eed18
+
+N.B.: The video does not capture the transition effect well when moving a cell, which is normally slower.
 
