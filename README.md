@@ -1,4 +1,4 @@
-# README du Projet Composants UI
+# Composants UI
 
 (english version below)
 
