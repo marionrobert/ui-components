@@ -1,7 +1,7 @@
 // Home.tsx
 import React from "react";
 import GridComponent from "./components/GridComponent";
-import WaveEffect from "./components/WaveEffect";
+import WaveEffect from "./components/WaveComponent";
 
 const Home: React.FC = () => {
   return (

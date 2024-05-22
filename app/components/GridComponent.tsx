@@ -172,6 +172,8 @@ export default function GridComponent() {
 
   // Render the grid items
   return (
+    <section className="moving-cells">
+      <h2>Moving cells</h2>
       <div ref={ref} className="grid-container">
         {positions.map((pos, index) => (
             <div key={index} className={`cell grid-item-${index+1}`} style={{ gridRowStart: pos.row, gridColumnStart: pos.col, backgroundColor: colors[index] }}>
@@ -179,5 +181,6 @@ export default function GridComponent() {
             </div>
         ))}
       </div>
+    </section>
   );
 }
