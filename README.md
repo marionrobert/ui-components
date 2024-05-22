@@ -69,6 +69,8 @@ NB: La vidéo ne rend pas bien l'effet de transition lors du déplacement d'une 
 - Utilisation de Pseudo-Éléments : Les pseudo-éléments :after et :before sont utilisés pour créer les parties principales de l'effet de vague.
 - Personnalisation : Les couleurs et les dimensions de l'effet de vague peuvent être facilement personnalisées en modifiant les valeurs dans le code CSS.
 
+https://github.com/marionrobert/ui-components/assets/107509668/c522313e-87e6-4f58-b6e7-05940408c26a
+
 [Source Vidéo Tutorielle](https://www.youtube.com/watch?v=v5uHEUnEjwM)
 
 
@@ -144,6 +146,10 @@ N.B.: The video does not capture the transition effect well when moving a cell, 
 ## Wave Component Feature
 - Animated Wave Effect: The component generates a wave animation using CSS properties and animations.
 - Usage of Pseudo-Elements: The :after and :before pseudo-elements are utilized to create the main parts of the wave effect.
-- Customization: The colors and dimensions of the wave effect can be easily customized by modifying the values in the CSS code.
+- Customization
+
+https://github.com/marionrobert/ui-components/assets/107509668/c522313e-87e6-4f58-b6e7-05940408c26a
+
+: The colors and dimensions of the wave effect can be easily customized by modifying the values in the CSS code.
 
 [Source Video Tutorial](https://www.youtube.com/watch?v=v5uHEUnEjwM)
