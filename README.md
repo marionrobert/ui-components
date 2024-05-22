@@ -129,7 +129,7 @@ The project structure is organized as follows:
 - CSS: Styling for UI components.
 - TypeScript: Typed superset of JavaScript for improved code quality.
 
-### Grid Component Feature
+## Grid Component Feature
 - Dynamic Cell Movements: Cells within the grid move randomly at regular intervals.
 - CSS Grid Layout: Utilizes CSS Grid for positioning grid items.
 - Animation Effects: Smooth animations applied to cell movements.
