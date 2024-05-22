@@ -2,13 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+*,*:after,*:before{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+}
+
 main {
   margin: 2rem 0;
 }
+
 h1 {
   text-align: center;
   font-size: 2rem;
-  margin: 2rem 0;
+  margin: 5rem 0;
 }
 
 .grid-container {
@@ -30,4 +39,71 @@ h1 {
 
 p {
   margin: 10rem 0;
+}
+
+.container {
+  margin: 5rem 0;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  background-color: #002638;
+}
+
+h2 {
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 2rem 0;
+  font-size: 2rem;
+}
+
+.water_wave {
+  width: 500px;
+  height: 500px;
+  background: #35b3e7;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 0 20px 0 rgba(0, 0, 0, 0.8), 0 0 20px 0 rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+
+.water_wave:after, .water_wave:before{
+  content:"";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: 50%;
+}
+
+.water_wave:after{
+  background-color: #fff;
+  border-radius: 45%;
+  animation: wave_animation 8s linear infinite;
+}
+
+.water_wave:before{
+  border-radius: 35%;
+  background-color: rgba(255, 255, 255, 0.3);
+  animation: wave_animation 8s linear infinite;
+}
+
+@keyframes wave_animation {
+  0%{
+    transform: translate(-50%, -50%) rotate(0deg);
+    top: -30%;
+  }
+
+  50%{
+    top: -50%;
+  }
+
+  100%{
+    transform: translate(-50%, -50%) rotate(360deg);
+    top: -30%;
+  }
+
 }
