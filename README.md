@@ -22,18 +22,18 @@ La structure du projet est organisée comme suit :
    ```bash
    git clone https://github.com/your-username/ui-components-project.git
     ```
-   
+
 3. **Installer les Dépendances**
    ```bash
    cd ui-components-project
    npm install
    ```
-   
+
 4. **Lancer le Serveur de Développement**
    ```bash
    npm run dev
    ```
-   
+
    Ce commande démarre le serveur de développement. Ouvrez http://localhost:3000 pour le voir dans votre navigateur.
 
 
@@ -55,13 +55,21 @@ La structure du projet est organisée comme suit :
 - Effets d'Animation : Animations fluides appliquées aux mouvements de cellules.
 
 <div style="display: flex; justify-content: center;">
-  <img src="public/screenshotGridComponent1.png" alt="screenshotGridComponent1" />
-  <img src="public/screenshotGridComponent2.png" alt="screenshotGridComponent2" />
+  <img src="public/images/screenshotGridComponent1.png" alt="screenshotGridComponent1" />
+  <img src="public/images/screenshotGridComponent2.png" alt="screenshotGridComponent2" />
 </div>
 
 https://github.com/marionrobert/ui-components/assets/107509668/ed09afe8-68bd-491d-ac2a-57a326f15819
 
 NB: La vidéo ne rend pas bien l'effet de transition lors du déplacement d'une cellule qui est plus lent en réalité.
+
+
+## Fonctionnalités du Composant Wave:
+- Effet de Vague Animé : Le composant génère une animation de vague en utilisant des propriétés CSS et des animations.
+- Utilisation de Pseudo-Éléments : Les pseudo-éléments :after et :before sont utilisés pour créer les parties principales de l'effet de vague.
+- Personnalisation : Les couleurs et les dimensions de l'effet de vague peuvent être facilement personnalisées en modifiant les valeurs dans le code CSS.
+
+[Source Vidéo Tutorielle](https://www.youtube.com/watch?v=v5uHEUnEjwM)
 
 
 ***
@@ -117,14 +125,14 @@ The project structure is organized as follows:
 - CSS: Styling for UI components.
 - TypeScript: Typed superset of JavaScript for improved code quality.
 
-### Grid Component Features
+### Grid Component Feature
 - Dynamic Cell Movements: Cells within the grid move randomly at regular intervals.
 - CSS Grid Layout: Utilizes CSS Grid for positioning grid items.
 - Animation Effects: Smooth animations applied to cell movements.
 
 <div style="display: flex; justify-content: center;">
-  <img src="public/screenshotGridComponent1.png" alt="screenshotGridComponent1" />
-  <img src="public/screenshotGridComponent2.png" alt="screenshotGridComponent2" />
+  <img src="public/images/screenshotGridComponent1.png" alt="screenshotGridComponent1" />
+  <img src="public/images/screenshotGridComponent2.png" alt="screenshotGridComponent2" />
 </div>
 
 
@@ -132,3 +140,10 @@ https://github.com/marionrobert/ui-components/assets/107509668/fe944c8d-bf59-413
 
 N.B.: The video does not capture the transition effect well when moving a cell, which is normally slower.
 
+
+## Wave Component Feature
+- Animated Wave Effect: The component generates a wave animation using CSS properties and animations.
+- Usage of Pseudo-Elements: The :after and :before pseudo-elements are utilized to create the main parts of the wave effect.
+- Customization: The colors and dimensions of the wave effect can be easily customized by modifying the values in the CSS code.
+
+[Source Video Tutorial](https://www.youtube.com/watch?v=v5uHEUnEjwM)
