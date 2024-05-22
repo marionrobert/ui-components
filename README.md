@@ -22,18 +22,18 @@ La structure du projet est organisée comme suit :
    ```bash
    git clone https://github.com/your-username/ui-components-project.git
     ```
-   
+
 3. **Installer les Dépendances**
    ```bash
    cd ui-components-project
    npm install
    ```
-   
+
 4. **Lancer le Serveur de Développement**
    ```bash
    npm run dev
    ```
-   
+
    Ce commande démarre le serveur de développement. Ouvrez http://localhost:3000 pour le voir dans votre navigateur.
 
 
@@ -55,8 +55,8 @@ La structure du projet est organisée comme suit :
 - Effets d'Animation : Animations fluides appliquées aux mouvements de cellules.
 
 <div style="display: flex; justify-content: center;">
-  <img src="public/screenshotGridComponent1.png" alt="screenshotGridComponent1" />
-  <img src="public/screenshotGridComponent2.png" alt="screenshotGridComponent2" />
+  <img src="public/images/screenshotGridComponent1.png" alt="screenshotGridComponent1" />
+  <img src="public/images/screenshotGridComponent2.png" alt="screenshotGridComponent2" />
 </div>
 
 https://github.com/marionrobert/ui-components/assets/107509668/ed09afe8-68bd-491d-ac2a-57a326f15819
@@ -123,12 +123,11 @@ The project structure is organized as follows:
 - Animation Effects: Smooth animations applied to cell movements.
 
 <div style="display: flex; justify-content: center;">
-  <img src="public/screenshotGridComponent1.png" alt="screenshotGridComponent1" />
-  <img src="public/screenshotGridComponent2.png" alt="screenshotGridComponent2" />
+  <img src="public/images/screenshotGridComponent1.png" alt="screenshotGridComponent1" />
+  <img src="public/images/screenshotGridComponent2.png" alt="screenshotGridComponent2" />
 </div>
 
 
 https://github.com/marionrobert/ui-components/assets/107509668/fe944c8d-bf59-4133-9690-8782f40eed18
 
 N.B.: The video does not capture the transition effect well when moving a cell, which is normally slower.
-
