@@ -79,7 +79,7 @@ const calculateOffsets = (emptyCellPos: CellPosition, selectedCell: CellPosition
 };
 
 // Component function
-export default function Home() {
+export default function GridComponent() {
   const { ref, inView } = useInView();
   const [emptyCellPos, setEmptyCellPos] = useState<{ row: number; col: number }>({ row: 3, col: 3 });
   const [lastMovedCell, setLastMovedCell] = useState<{ row: number; col: number }>({ row: 3, col: 3 });
